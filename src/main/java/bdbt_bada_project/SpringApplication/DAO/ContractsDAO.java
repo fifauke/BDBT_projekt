@@ -1,8 +1,9 @@
-package bdbt_bada_project.SpringApplication;
+package bdbt_bada_project.SpringApplication.DAO;
 
 /* Import java.util.List */
 import java.util.List;
 /* Import org.springframework.jd....Template */
+import bdbt_bada_project.SpringApplication.Models.Contract;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

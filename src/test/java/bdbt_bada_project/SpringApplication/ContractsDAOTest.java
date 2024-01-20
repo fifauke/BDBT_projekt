@@ -1,5 +1,7 @@
 package bdbt_bada_project.SpringApplication;
 
+import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
+import bdbt_bada_project.SpringApplication.Models.Contract;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;

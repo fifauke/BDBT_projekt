@@ -1,4 +1,4 @@
-package bdbt_bada_project.SpringApplication;
+package bdbt_bada_project.SpringApplication.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

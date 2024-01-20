@@ -1,12 +1,13 @@
-package bdbt_bada_project.SpringApplication;
+package bdbt_bada_project.SpringApplication.Controllers;
+import bdbt_bada_project.SpringApplication.Models.Contract;
+import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
+import bdbt_bada_project.SpringApplication.Models.User;
+import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -88,6 +89,33 @@ public class AppController implements WebMvcConfigurer {
             }
             else {
                 return "redirect:/index";
+            }
+        }
+    }
+
+    @Controller
+    public class RegistrationController {
+
+        private final UserService userService;
+        public RegistrationController(UserService userService){
+            this.userService = userService;
+        }
+
+        @RequestMapping("/register")
+        public String showRegisterForm(Model model){
+            model.addAttribute("user", new User());
+            return "register";
+        }
+
+        @PostMapping("/register")
+        public String registerUser(@ModelAttribute("user") User user, Model model){
+            try {
+                user.setRole("USER");
+                userService.register(user);
+                return "redirect:/login";
+            } catch (Exception e){
+                model.addAttribute("error", "Company is already registered");
+                return "register";
             }
         }
     }
