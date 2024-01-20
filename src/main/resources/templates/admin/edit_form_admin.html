@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Contract</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/main}">Main
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/record_admin}">Contracts
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+
+        <li class="nav-item">
+          <form method="post" th:action="@{/index}">
+            <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+              Logout
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div align = "center">
+  <br/>
+  <h1>Edit Contact</h1>
+  <br/>
+  <form action="#" th:action="@{/update}" th:object="${contract}" method="post">
+    <table border = "1" cellpadding = "10">
+      <!-- Table row-->
+      <tr>
+        <td>Nr_sponsora:</td>
+        <td><input type="text" th:field="*{nr_sponsora}"></td>
+      </tr>
+      <tr>
+        <td>Nazwa_sponsora:</td>
+        <td><input type="text" th:field="*{nazwa_sponsora}"></td>
+      </tr>
+      <tr>
+        <td>Data_zakonczenia_umowy:</td>
+        <td><input type="text" th:field="*{data_zakonczenia_umowy}"></td>
+      </tr>
+      <tr>
+        <td>Wartosc_finansowa:</td>
+        <td><input type="text" th:field="*{wartosc_finansowa}"></td>
+      </tr>
+      <tr>
+        <td>Branza:</td>
+        <td><input type="text" th:field="*{branza}"></td>
+      </tr>
+<!--      <tr>-->
+<!--        <td>Aktywna_umowa:</td>-->
+<!--        <td><input type="text" th:field="*{Aktywna_umowa}"></td>-->
+<!--      </tr>-->
+      <tr>
+        <td>Nr_telefonu:</td>
+        <td><input type="text" th:field="*{nr_telefonu}"></td>
+      </tr>
+      <tr>
+        <td>email:</td>
+        <td><input type="text" th:field="*{email}"></td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+      </tr>
+
+    </table>
+  </form>
+</div>
+</body>
+</html>

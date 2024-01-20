@@ -21,13 +21,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/index}">Home</a>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/main}">Main
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
 
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Main
-                        <span class="sr-only">(current)</span>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/record_admin}">Contracts
                     </a>
                 </li>
 
@@ -38,7 +39,8 @@
 
                 <li class="nav-item">
                     <form method="post" th:action="@{/index}">
-                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+                            Logout
                         </button>
                     </form>
                 </li>
@@ -51,14 +53,26 @@
     <div class="row">
 
         <div class="col-md-10 mt-5">
-            <form method="post" th:action="@{/index}">
-                <div class="form-group">
-                    <label style="font-size:30px" th:inline="text">Welcome <a
-                            style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
-                        to the main page!</label>
-                    <div style="font-size:20px">If you want to log out, press "Logout".</div>
-                </div>
 
+            <div class="form-group">
+                <label style="font-size:30px" th:inline="text">Welcome <a
+                        style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
+                    to the main page!
+                </label>
+
+                <div style="font-size:20px">If you want to see all contracts, press "All Contracts".</div>
+            </div>
+
+            <form method="post" th:action="@{/record_admin}">
+                <button class="btn btn-primary" type="submit" onclick="" value="">All Contracts
+                </button>
+            </form>
+            <br/>
+            <div class="form-group">
+                <div style="font-size:20px">If you want to log out, press "Logout".</div>
+            </div>
+
+            <form method="post" th:action="@{/index}">
                 <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
                 </button>
             </form>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Contracts Record</title>
+
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/main}">Main
+          </a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" th:href="@{/record_admin}">Contracts
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+
+        <li class="nav-item">
+          <form method="post" th:action="@{/index}">
+            <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+              Logout
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div align="center">
+  <br/>
+  <h1>Contracts record</h1>
+  <br/>
+  <!-- Entry to new page-->
+
+  <form method="post" th:action="@{/new_form_admin}">
+    <button class="btn btn-primary" type="submit" onclick="" value="">New contract
+    </button>
+  </form>
+  <br/>
+  <!-- Table -->
+  <table border = "1" cellpadding = "10">
+    <!-- Table header -->
+    <thead>
+    <tr> <!-- Table row -->
+      <th style="text-align: center;">ID</th> <!–- Table column -->
+      <th style="text-align: center;">Sponsor Name</th>
+      <th style="text-align: center;">Date of Expiry</th>
+      <th style="text-align: center;">Monetary Value</th>
+      <th style="text-align: center;">Industry</th>
+      <th style="text-align: center;">Active Status</th>
+      <th style="text-align: center;">Phone Number</th>
+      <th style="text-align: center;">E-mail</th>
+      <th style="text-align: center;">Action</th>
+    </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+    <tr th:each = "contract : ${listContract}">
+      <td th:text = "${contract.nr_sponsora}">ID</td>
+      <td th:text = "${contract.nazwa_sponsora}">Sponsor Name</td>
+      <td th:text = "${contract.data_zakonczenia_umowy}">Date of Expiry</td>
+      <td th:text = "${contract.wartosc_finansowa}">Monetary Value</td>
+      <td th:text = "${contract.branza}">Industry</td>
+      <td th:text = "${contract.aktywna_umowa}">Active Status</td>
+      <td th:text = "${contract.nr_telefonu}">Phone Number</td>
+      <td th:text = "${contract.email}">E-mail</td>
+      <td>
+        <a th:href="@{'/edit_admin/' + ${contract.nr_sponsora}}">Edit</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a th:href="@{'/delete_admin/' + ${contract.nr_sponsora}}">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

@@ -1,26 +1,30 @@
 package bdbt_bada_project.SpringApplication;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.beans.Transient;
 import java.time.LocalDate;
 
 public class Contract {
-    private int id;
-    private String sponsorName;
-    private LocalDate dateOfExpiry;
-    private int monetaryValue;
-    private String industry;
-    private boolean isActive;
-    private String phoneNumber;
+    private int Nr_sponsora;
+    private String Nazwa_sponsora;
+    @DateTimeFormat(pattern = "yy/MM/dd")
+    private LocalDate Data_zakonczenia_umowy;
+    private int Wartosc_finansowa;
+    private String Branza;
+    //private boolean Aktywna_umowa;
+    private String Nr_telefonu;
     private String email;
 
-    public Contract(int id, String sponsorName, LocalDate dateOfExpiry, int monetaryValue, String industry, boolean isActive, String phoneNumber, String email) {
+    public Contract(int Nr_sponsora, String Nazwa_sponsora, LocalDate Data_zakonczenia_umowy, int Wartosc_finansowa, String Branza, boolean Aktywna_umowa, String Nr_telefonu, String email) {
         super();
-        this.id = id;
-        this.sponsorName = sponsorName;
-        this.dateOfExpiry = dateOfExpiry;
-        this.monetaryValue = monetaryValue;
-        this.industry = industry;
-        this.isActive = isActive;
-        this.phoneNumber = phoneNumber;
+        this.Nr_sponsora = Nr_sponsora;
+        this.Nazwa_sponsora = Nazwa_sponsora;
+        this.Data_zakonczenia_umowy = Data_zakonczenia_umowy;
+        this.Wartosc_finansowa = Wartosc_finansowa;
+        this.Branza = Branza;
+        //this.Aktywna_umowa = Aktywna_umowa;
+        this.Nr_telefonu = Nr_telefonu;
         this.email = email;
     }
 
@@ -28,60 +32,60 @@ public class Contract {
 
     }
 
-    public int getId() {
-        return id;
+    public int getNr_sponsora() {
+        return Nr_sponsora;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNr_sponsora(int Nr_sponsora) {
+        this.Nr_sponsora = Nr_sponsora;
     }
 
-    public String getSponsorName() {
-        return sponsorName;
+    public String getNazwa_sponsora() {
+        return Nazwa_sponsora;
     }
 
-    public void setSponsorName(String sponsorName) {
-        this.sponsorName = sponsorName;
+    public void setNazwa_sponsora(String Nazwa_sponsora) {
+        this.Nazwa_sponsora = Nazwa_sponsora;
     }
 
-    public LocalDate getDateOfExpiry() {
-        return dateOfExpiry;
+    public LocalDate getData_zakonczenia_umowy() {
+        return Data_zakonczenia_umowy;
     }
 
-    public void setDateOfExpiry(LocalDate dateOfExpiry) {
-        this.dateOfExpiry = dateOfExpiry;
+    public void setData_zakonczenia_umowy(LocalDate Data_zakonczenia_umowy) {
+        this.Data_zakonczenia_umowy = Data_zakonczenia_umowy;
     }
 
-    public int getMonetaryValue() {
-        return monetaryValue;
+    public int getWartosc_finansowa() {
+        return Wartosc_finansowa;
     }
 
-    public void setMonetaryValue(int monetaryValue) {
-        this.monetaryValue = monetaryValue;
+    public void setWartosc_finansowa(int Wartosc_finansowa) {
+        this.Wartosc_finansowa = Wartosc_finansowa;
     }
 
-    public String getIndustry() {
-        return industry;
+    public String getBranza() {
+        return Branza;
     }
 
-    public void setIndustry(String industry) {
-        this.industry = industry;
+    public void setBranza(String Branza) {
+        this.Branza = Branza;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isAktywna_umowa() {
+        return this.Data_zakonczenia_umowy.isAfter(LocalDate.now());
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    /*public void setAktywna_umowa(boolean Aktywna_umowa) {
+        this.Aktywna_umowa = Aktywna_umowa;
+    }*/
+
+    public String getNr_telefonu() {
+        return Nr_telefonu;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setNr_telefonu(String Nr_telefonu) {
+        this.Nr_telefonu = Nr_telefonu;
     }
 
     public String getEmail() {
@@ -95,13 +99,13 @@ public class Contract {
     @Override
     public String toString() {
         return "Contract{" +
-                "id=" + id +
-                ", sponsorName='" + sponsorName + '\'' +
-                ", dateOfExpiry=" + dateOfExpiry +
-                ", monetaryValue=" + monetaryValue +
-                ", industry='" + industry + '\'' +
-                ", isActive=" + isActive +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                "id=" + Nr_sponsora +
+                ", sponsorName='" + Nazwa_sponsora + '\'' +
+                ", dateOfExpiry=" + Data_zakonczenia_umowy +
+                ", monetaryValue=" + Wartosc_finansowa +
+                ", industry='" + Branza + '\'' +
+                //", isActive=" + Aktywna_umowa +
+                ", phoneNumber='" + Nr_telefonu + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }

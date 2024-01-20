@@ -60,8 +60,12 @@
         <div class="col-md-10 mt-5">
 
             <label style="font-size:30px">Welcome to the home page of the club!</label>
-            <div style="font-size:20px">If you want to log in, click <a th:href="@{/main}"><b>here</b></a> or top right.
+            <div style="font-size:20px">If you want to log in, click below or top right.
             </div>
+            <br/>
+            <form method="post" th:action="@{/main}">
+                <button class="btn btn-primary" type="submit" value="Sign In">Login</button>
+            </form>
 
         </div>
     </div>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Contract</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/main}">Main
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/record_admin}">Contracts
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
+                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                </li>
+
+                <li class="nav-item">
+                    <form method="post" th:action="@{/index}">
+                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div align="center">
+    <br/>
+    <!-- Page header -->
+    <h1>Enter New Sponsorship Contract</h1>
+
+    <!-- End line/ new line -->
+    <br/>
+
+    <form action="#" th:action="@{/save}" th:object="${contract}" method="post">
+        <!-- Table -->
+        <table border = "1" cellpadding = "10">
+            <!-- Table row-->
+            <tr>
+                <td>ID:</td>
+                <td><input type="text" th:field="*{nr_sponsora}"></td>
+            </tr>
+            <tr>
+                <td>Sponsor Name:</td>
+                <td><input type="text" th:field="*{nazwa_sponsora}"></td>
+            </tr>
+            <tr>
+                <td>Date of Expiry:</td>
+                <td><input type="text" th:field="*{data_zakonczenia_umowy}"></td>
+            </tr>
+            <tr>
+                <td>Monetary Value:</td>
+                <td><input type="text" th:field="*{wartosc_finansowa}"></td>
+            </tr>
+            <tr>
+                <td>Industry:</td>
+                <td><input type="text" th:field="*{branza}"></td>
+            </tr>
+<!--            <tr>-->
+<!--                <td>Active Status:</td>-->
+<!--                <td><input type="text" th:field="*{Aktywna_umowa}"></td>-->
+<!--            </tr>-->
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" th:field="*{nr_telefonu}"></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td><input type="text" th:field="*{email}"></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Add</button></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+</body>
+</html>
