@@ -28,6 +28,7 @@ public class UserService {
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new UserAlreadyExistsException("Username already exists");
         }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }

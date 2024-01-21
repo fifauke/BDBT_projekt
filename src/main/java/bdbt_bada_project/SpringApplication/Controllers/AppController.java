@@ -1,4 +1,5 @@
 package bdbt_bada_project.SpringApplication.Controllers;
+import bdbt_bada_project.SpringApplication.Exceptions.UserAlreadyExistsException;
 import bdbt_bada_project.SpringApplication.Models.Contract;
 import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
 import bdbt_bada_project.SpringApplication.Models.User;
@@ -101,7 +102,7 @@ public class AppController implements WebMvcConfigurer {
             this.userService = userService;
         }
 
-        @RequestMapping("/register")
+        @GetMapping("/register")
         public String showRegisterForm(Model model){
             model.addAttribute("user", new User());
             return "register";
@@ -113,12 +114,14 @@ public class AppController implements WebMvcConfigurer {
                 user.setRole("USER");
                 userService.register(user);
                 return "redirect:/login";
-            } catch (Exception e){
-                model.addAttribute("error", "Company is already registered");
+
+            } catch (UserAlreadyExistsException e){
+                model.addAttribute("error", "User is already registered");
                 return "register";
             }
         }
     }
+
 
     @RequestMapping(value={"/main_admin"})
     public String showAdminPage(Model model){
