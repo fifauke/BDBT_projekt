@@ -49,12 +49,23 @@
 
         <div class="col-md-10 mt-5">
 
-                <div class="form-group">
-                    <label style="font-size:30px" th:inline="text">Welcome <a
-                            style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
-                        one the main page!</label>
-                    <div style="font-size:20px">If you want to log out, press "Logout".</div>
-                </div>
+            <div class="form-group">
+                <label style="font-size:30px" th:inline="text">Welcome <a
+                        style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
+                    to the main page!
+                </label>
+
+                <div style="font-size:20px">You have not signed a contract yet. Press "Sign a Contract".</div>
+            </div>
+
+            <form method="post" th:action="@{/record_admin}">
+                <button class="btn btn-primary" type="submit" onclick="" value="">Sign a Contract
+                </button>
+            </form>
+            <br/>
+            <div class="form-group">
+                <div style="font-size:20px">If you want to log out, press "Logout".</div>
+            </div>
 
             <form method="post" th:action="@{/index}">
                 <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout

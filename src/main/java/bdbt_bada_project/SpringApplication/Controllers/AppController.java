@@ -6,6 +6,9 @@ import bdbt_bada_project.SpringApplication.Models.User;
 import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +29,15 @@ public class AppController implements WebMvcConfigurer {
         registry.addViewController("/login").setViewName("login");
 
         registry.addViewController("/main_admin").setViewName("admin/main_admin");
-        registry.addViewController("/main_user").setViewName("user/main_user");
+
+        registry.addViewController("/main_without_contract_user").setViewName("user/main_without_contract_user");
+        registry.addViewController("/main_with_contract_user").setViewName("user/main_with_contract_user");
+    }
+
+    public String getCurrentlyLoggedInUserUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        return userDetails.getUsername();
     }
 
     @Controller
@@ -80,15 +91,24 @@ public class AppController implements WebMvcConfigurer {
 
             return "redirect:/record_admin";
         }
+
         @RequestMapping("/main")
         public String defaultAfterLogin(HttpServletRequest request) {
+
             if (request.isUserInRole("ADMIN")) {
                 return "redirect:/main_admin";
-            }
-            else if (request.isUserInRole("USER")) {
-                return "redirect:/main_user";
-            }
-            else {
+            } else if (request.isUserInRole("USER")) {
+
+                String username = getCurrentlyLoggedInUserUsername();
+                boolean hasSignedContracts = dao.hasSignedContract(username);
+
+                if (!hasSignedContracts){
+                    return "redirect:/main_without_contract_user";
+                }
+                 else {
+                     return "redirect:/main_with_contract_user";
+                }
+            } else {
                 return "redirect:/index";
             }
         }
@@ -120,16 +140,5 @@ public class AppController implements WebMvcConfigurer {
                 return "register";
             }
         }
-    }
-
-
-    @RequestMapping(value={"/main_admin"})
-    public String showAdminPage(Model model){
-        return "admin/main_admin";
-    }
-
-    @RequestMapping(value={"/main_user"})
-    public String showUserPage(Model model){
-        return "user/main_user";
     }
 }

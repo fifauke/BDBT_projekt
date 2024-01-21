@@ -65,4 +65,11 @@ public class ContractsDAO {
         String sql = "DELETE FROM Sponsorzy WHERE Nr_sponsora = ?";
         jdbcTemplate.update(sql, Nr_sponsora);
     }
+
+    /* Funkcja sprawdzająca czy dany użytkownik jest już sponsorem */
+    public boolean hasSignedContract(String username) {
+        String sql = "SELECT COUNT(*) FROM Sponsorzy WHERE Nazwa_sponsora = ?";
+        Object[] args = {username};
+        return jdbcTemplate.queryForObject(sql, args, Integer.class) > 0;
+    }
 }
