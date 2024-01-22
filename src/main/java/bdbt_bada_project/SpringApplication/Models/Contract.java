@@ -2,7 +2,6 @@ package bdbt_bada_project.SpringApplication.Models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.beans.Transient;
 import java.time.LocalDate;
 
 public class Contract {
@@ -23,7 +22,6 @@ public class Contract {
         this.Data_zakonczenia_umowy = Data_zakonczenia_umowy;
         this.Wartosc_finansowa = Wartosc_finansowa;
         this.Branza = Branza;
-        //this.Aktywna_umowa = Aktywna_umowa;
         this.Nr_telefonu = Nr_telefonu;
         this.email = email;
     }
@@ -76,10 +74,6 @@ public class Contract {
         return this.Data_zakonczenia_umowy.isAfter(LocalDate.now());
     }
 
-    /*public void setAktywna_umowa(boolean Aktywna_umowa) {
-        this.Aktywna_umowa = Aktywna_umowa;
-    }*/
-
     public String getNr_telefonu() {
         return Nr_telefonu;
     }
@@ -104,7 +98,7 @@ public class Contract {
                 ", dateOfExpiry=" + Data_zakonczenia_umowy +
                 ", monetaryValue=" + Wartosc_finansowa +
                 ", industry='" + Branza + '\'' +
-                //", isActive=" + Aktywna_umowa +
+                ", isActive=" +  this.isAktywna_umowa() +
                 ", phoneNumber='" + Nr_telefonu + '\'' +
                 ", email='" + email + '\'' +
                 '}';

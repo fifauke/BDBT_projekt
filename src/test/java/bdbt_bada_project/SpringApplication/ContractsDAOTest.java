@@ -30,9 +30,9 @@ public class ContractsDAOTest {
 
     @Test
     void list() {
-        List<Contract> listAdres = dao.list();
-        System.out.println(listAdres);
-        assertTrue(listAdres.isEmpty());
+        List<Contract> listContract = dao.list();
+        System.out.println(listContract);
+        assertFalse(listContract.isEmpty());
     }
 
     @Test

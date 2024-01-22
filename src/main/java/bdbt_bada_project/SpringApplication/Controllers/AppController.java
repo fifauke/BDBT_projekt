@@ -48,14 +48,14 @@ public class AppController implements WebMvcConfigurer {
         private ContractsDAO dao;
 
         @RequestMapping("/record_admin")
-        public String testViewHomePage(Model model){
+        public String viewHomePage(Model model){
             List<Contract> listContract = dao.list();
             model.addAttribute("listContract", listContract);
             return "admin/record_admin";
         }
 
         @RequestMapping("/new_form_admin")
-        public String testShowNewForm(Model model) {
+        public String showNewForm(Model model) {
             Contract contract = new Contract();
             model.addAttribute("contract", contract);
 
@@ -70,7 +70,7 @@ public class AppController implements WebMvcConfigurer {
         }
 
         @RequestMapping(value="/edit_admin/{Nr_sponsora}")
-        public ModelAndView testShowEditForm(@PathVariable(name = "Nr_sponsora") int Nr_sponsora){
+        public ModelAndView showEditForm(@PathVariable(name = "Nr_sponsora") int Nr_sponsora){
             ModelAndView mav = new ModelAndView("admin/edit_form_admin");
             Contract contract = dao.get(Nr_sponsora);
             mav.addObject("contract", contract);
@@ -93,7 +93,7 @@ public class AppController implements WebMvcConfigurer {
         }
 
         @RequestMapping("/main")
-        public String defaultAfterLogin(HttpServletRequest request) {
+        public String defaultAfterLogin(HttpServletRequest request, Model model) {
 
             if (request.isUserInRole("ADMIN")) {
                 return "redirect:/main_admin";
@@ -103,10 +103,12 @@ public class AppController implements WebMvcConfigurer {
                 boolean hasSignedContracts = dao.hasSignedContract(username);
 
                 if (!hasSignedContracts){
-                    return "redirect:/main_without_contract_user";
+                    return "user/main_without_contract_user";
                 }
                  else {
-                     return "redirect:/main_with_contract_user";
+                     Contract contract = dao.get(12);
+                     model.addAttribute("contract", contract);
+                     return "user/main_with_contract_user";
                 }
             } else {
                 return "redirect:/index";
@@ -140,5 +142,27 @@ public class AppController implements WebMvcConfigurer {
                 return "register";
             }
         }
+    }
+
+    @Controller
+    public class UserDashboardController {
+
+        @Autowired
+        private ContractsDAO dao;
+        @RequestMapping("/new_form_user")
+        public String showNewForm(Model model) {
+            Contract contract = new Contract();
+            contract.setNazwa_sponsora(getCurrentlyLoggedInUserUsername());
+            model.addAttribute("contract", contract);
+
+            return "user/new_form_user";
+        }
+        @RequestMapping(value="/save_user", method = RequestMethod.POST)
+        public String save(@ModelAttribute("contract") Contract contract){
+            dao.save(contract);
+
+            return "redirect:/main";
+        }
+
     }
 }

@@ -24,11 +24,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/record_admin}">Contracts
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
                             style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
                 </li>
@@ -47,12 +42,12 @@
 <div align="center">
     <br/>
     <!-- Page header -->
-    <h1>Enter new sponsorship contract</h1>
+    <h1>Fill out the contract form</h1>
 
     <!-- End line/ new line -->
     <br/>
 
-    <form action="#" th:action="@{/save}" th:object="${contract}" method="post">
+    <form action="#" th:action="@{/save_user}" th:object="${contract}" method="post">
         <!-- Table -->
         <table border = "1" cellpadding = "10">
             <!-- Table row-->
@@ -62,7 +57,7 @@
 <!--            </tr>-->
             <tr>
                 <td>Sponsor Name:</td>
-                <td><input type="text" th:field="*{nazwa_sponsora}"></td>
+                <td><input type="text" th:field="*{nazwa_sponsora}" readonly="readonly"></td>
             </tr>
             <tr>
                 <td>Date of Expiry:</td>
