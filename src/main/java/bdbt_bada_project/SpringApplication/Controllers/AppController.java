@@ -106,7 +106,7 @@ public class AppController implements WebMvcConfigurer {
                     return "user/main_without_contract_user";
                 }
                  else {
-                     Contract contract = dao.get(12);
+                     Contract contract = dao.getByUsername(username);
                      model.addAttribute("contract", contract);
                      return "user/main_with_contract_user";
                 }
@@ -160,6 +160,29 @@ public class AppController implements WebMvcConfigurer {
         @RequestMapping(value="/save_user", method = RequestMethod.POST)
         public String save(@ModelAttribute("contract") Contract contract){
             dao.save(contract);
+
+            return "redirect:/main";
+        }
+
+        @RequestMapping(value = "/edit_user/{Nazwa_sponsora}")
+        public ModelAndView showEditForm(@PathVariable(name = "Nazwa_sponsora") String Nazwa_sponsora){
+            ModelAndView mav = new ModelAndView("user/edit_form_user");
+            Contract contract = dao.getByUsername(getCurrentlyLoggedInUserUsername());
+            mav.addObject("contract", contract);
+
+            return mav;
+        }
+
+        @RequestMapping(value = "/update_user", method = RequestMethod.POST)
+        public String update(@ModelAttribute("contract") Contract contract){
+            dao.updateByUser(contract);
+
+            return "redirect:/main";
+        }
+
+        @RequestMapping("/delete_user/{Nazwa_sponsora}")
+        public String delete(@PathVariable(name = "Nazwa_sponsora") String Nazwa_sponsora) {
+            dao.delete(Nazwa_sponsora);
 
             return "redirect:/main";
         }

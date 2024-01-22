@@ -60,10 +60,23 @@ public class ContractsDAO {
 
         template.update(sql, param);
     }
+
+    public void updateByUser(Contract contract) {
+        String sql = "UPDATE Sponsorzy SET Nr_telefonu=:Nr_telefonu, email=:email WHERE Nazwa_sponsora=:Nazwa_sponsora";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(contract);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+        template.update(sql, param);
+    }
     /* Delete – wybrany rekord z danym id */
     public void delete(int Nr_sponsora) {
         String sql = "DELETE FROM Sponsorzy WHERE Nr_sponsora = ?";
         jdbcTemplate.update(sql, Nr_sponsora);
+    }
+
+    public void delete(String Nazwa_sponsora) {
+        String sql = "DELETE FROM Sponsorzy WHERE Nazwa_sponsora = ?";
+        jdbcTemplate.update(sql, Nazwa_sponsora);
     }
 
     /* Funkcja sprawdzająca czy dany użytkownik jest już sponsorem */
@@ -71,5 +84,12 @@ public class ContractsDAO {
         String sql = "SELECT COUNT(*) FROM Sponsorzy WHERE Nazwa_sponsora = ?";
         Object[] args = {username};
         return jdbcTemplate.queryForObject(sql, args, Integer.class) > 0;
+    }
+
+    /* Funkcja zwracająca kontrakt o danej nazwie sponsora */
+    public Contract getByUsername(String username) {
+        String sql = "SELECT * FROM Sponsorzy WHERE Nazwa_sponsora = ?";
+        Object[] args = {username};
+        return jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Contract.class));
     }
 }
