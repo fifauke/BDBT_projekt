@@ -69,28 +69,28 @@
         <thead>
         <tr> <!-- Table row -->
             <th style="text-align: center;">ID</th> <!–- Table column -->
-            <th style="text-align: center;">Number of seats</th>
-            <th style="text-align: center;">Name</th>
-            <th style="text-align: center;">Date of opening</th>
-            <th style="text-align: center;">Has parking?</th>
-            <th style="text-align: center;">Type of grass</th>
-            <th style="text-align: center;">Has closeable roof?</th>
-            <th style="text-align: center;">Address</th>
-            <th style="text-align: center;">Action</th>
+            <th style="text-align: center;">Match Number</th>
+            <th style="text-align: center;">Date of Match</th>
+            <th style="text-align: center;">Added Time</th>
+            <th style="text-align: center;">Hosts</th>
+            <th style="text-align: center;">Guests</th>
+            <th style="text-align: center;">Took Place?</th>
+            <th style="text-align: center;">Hosts' goals</th>
+            <th style="text-align: center;">Guests' goals</th>
         </tr>
         </thead>
         <!-- Table body -->
         <tbody>
         <tr th:each = "match : ${listMatch}">
             <td th:text = "${match.nr_meczu}">ID</td>
-            <td th:text = "${match.nr_stadionu}">Sponsor Name</td>
-            <td th:text = "${match.data}">Date of Expiry</td>
-            <td th:text = "${match.doliczony_czas}">Monetary Value</td>
-            <td th:text = "${match.gospodarze}">Industry</td>
-            <td th:text = "${match.goscie}">Active Status</td>
-            <td th:text = "${match.czy_sie_odbyl}">Phone Number</td>
-            <td th:text = "${match.bramki_gospodarzy}">E-mail</td>
-            <td th:text = "${match.bramki_gosci}">E-mail</td>
+            <td th:text = "${match.nr_stadionu}">Match Number</td>
+            <td th:text = "${match.data}">Date of Match</td>
+            <td th:text = "${match.doliczony_czas}">Added Time</td>
+            <td th:text = "${match.gospodarze}">Hosts</td>
+            <td th:text = "${match.goscie}">Guests</td>
+            <td th:text = "${match.czy_sie_odbyl}">Took Place?</td>
+            <td th:text = "${match.bramki_gospodarzy}">Hosts' goals</td>
+            <td th:text = "${match.bramki_gosci}">Guests' goals</td>
             <td>
                 <a th:href="@{'/edit_stadium_admin/' + ${match.nr_meczu}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
