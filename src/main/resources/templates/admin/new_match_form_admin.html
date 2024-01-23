@@ -65,7 +65,7 @@
         <td><input type="text" th:field="*{nr_meczu}"></td>
       </tr>
       <tr>
-        <td>Stadium Number:</td>
+        <td>Stadium Name:</td>
         <td>
           <select th:field="*{nr_stadionu}">
             <option th:each="stadium: ${stadiums}" th:value="${stadium.nr_stadionu}" th:text="${stadium.nazwa}"></option>
@@ -90,7 +90,12 @@
       </tr>
       <tr>
         <td>Took Place?</td>
-        <td><input type="text" th:field="*{czy_sie_odbyl}"></td>
+        <td>
+          <select th:field="*{czy_sie_odbyl}">
+            <option value="true" th:text="Yes"></option>
+            <option value="false" th:text="No"></option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td>Hosts' goals:</td>
