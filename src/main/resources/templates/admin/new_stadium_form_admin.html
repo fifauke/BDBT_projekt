@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Contract</title>
+  <title>New Stadium</title>
   <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
@@ -49,44 +49,52 @@
     </div>
   </div>
 </nav>
+<div align="center">
+  <br/>
+  <!-- Page header -->
+  <h1>Enter new stadium</h1>
 
-<div align = "center">
+  <!-- End line/ new line -->
   <br/>
-  <h1>Edit Contract</h1>
-  <br/>
-  <form action="#" th:action="@{/update}" th:object="${contract}" method="post">
+
+  <form action="#" th:action="@{/save_stadium}" th:object="${stadium}" method="post">
+    <!-- Table -->
     <table border = "1" cellpadding = "10">
       <!-- Table row-->
+      <!--            <tr>-->
+      <!--                <td>ID:</td>-->
+      <!--                <td><input type="text" th:field="*{nr_sponsora}"></td>-->
+      <!--            </tr>-->
       <tr>
-        <td>Nr sponsora:</td>
-        <td><input type="text" th:field="*{nr_sponsora}"></td>
+        <td>Sponsor Name:</td>
+        <td><input type="text" th:field="*{ilosc_miejsc}"></td>
       </tr>
       <tr>
-        <td>Nazwa sponsora:</td>
-        <td><input type="text" th:field="*{nazwa_sponsora}"></td>
+        <td>Date of Expiry:</td>
+        <td><input type="text" th:field="*{nazwa}"></td>
       </tr>
       <tr>
-        <td>Data zakonczenia umowy:</td>
-        <td><input type="text" th:field="*{data_zakonczenia_umowy}"></td>
+        <td>Monetary Value:</td>
+        <td><input type="text" th:field="*{data_otwarcia}"></td>
       </tr>
       <tr>
-        <td>Wartosc finansowa:</td>
-        <td><input type="text" th:field="*{wartosc_finansowa}"></td>
+        <td>Industry:</td>
+        <td><input type="text" th:field="*{czy_parking}"></td>
       </tr>
       <tr>
-        <td>Branza:</td>
-        <td><input type="text" th:field="*{branza}"></td>
+        <td>Phone Number:</td>
+        <td><input type="text" th:field="*{rodzaj_murawy}"></td>
       </tr>
       <tr>
-        <td>Nr telefonu:</td>
-        <td><input type="text" th:field="*{nr_telefonu}"></td>
+        <td>E-mail:</td>
+        <td><input type="text" th:field="*{czy_zamykany_dach}"></td>
       </tr>
       <tr>
-        <td>email:</td>
-        <td><input type="text" th:field="*{email}"></td>
+        <td>E-mail:</td>
+        <td><input type="text" th:field="*{adres}"></td>
       </tr>
       <tr>
-        <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+        <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Add</button></td>
       </tr>
 
     </table>

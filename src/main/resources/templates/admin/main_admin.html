@@ -33,6 +33,11 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" th:href="@{/record_stadium_admin}">Stadiums
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
                             style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
                 </li>
@@ -65,6 +70,13 @@
 
             <form method="post" th:action="@{/record_admin}">
                 <button class="btn btn-primary" type="submit" onclick="" value="">Contracts
+                </button>
+            </form>
+            <br/>
+            <div style="font-size:20px">If you want to manage stadiums, press "Manage Stadiums".</div>
+            <br/>
+            <form method="post" th:action="@{/record_stadium_admin}">
+                <button class="btn btn-primary" type="submit" onclick="" value="">Manage Stadiums
                 </button>
             </form>
             <br/>

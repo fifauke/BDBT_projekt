@@ -1,10 +1,12 @@
 package bdbt_bada_project.SpringApplication.Controllers;
 import bdbt_bada_project.SpringApplication.DAO.FansDAO;
+import bdbt_bada_project.SpringApplication.DAO.StadiumsDAO;
 import bdbt_bada_project.SpringApplication.DTO.FanRegistrationDTO;
 import bdbt_bada_project.SpringApplication.Exceptions.UserAlreadyExistsException;
 import bdbt_bada_project.SpringApplication.Models.Contract;
 import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
 import bdbt_bada_project.SpringApplication.Models.Fan;
+import bdbt_bada_project.SpringApplication.Models.Stadium;
 import bdbt_bada_project.SpringApplication.Models.User;
 import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,8 @@ public class AppController implements WebMvcConfigurer {
 
         @Autowired
         private ContractsDAO dao;
+        @Autowired
+        private StadiumsDAO stadiumsDAO;
 
         @RequestMapping("/record_admin")
         public String viewHomePage(Model model){
@@ -95,6 +99,30 @@ public class AppController implements WebMvcConfigurer {
             dao.delete(Nr_sponsora);
 
             return "redirect:/record_admin";
+        }
+
+        @RequestMapping("/record_stadium_admin")
+        public String viewStadiumRecord(Model model){
+            List<Stadium> listStadium = stadiumsDAO.list();
+
+            //Wyświetlanie rodzaju murawy w bardziej czytelnej formie
+            for(Stadium stadium: listStadium){
+                if(stadium.getRodzaj_murawy().equals("N")){
+                    stadium.setRodzaj_murawy("Natural");
+                } else if(stadium.getRodzaj_murawy().equals("S")){
+                    stadium.setRodzaj_murawy("Artificial");
+                }
+            }
+            model.addAttribute("listStadium", listStadium);
+            return "admin/record_stadium_admin";
+        }
+
+        @RequestMapping("/new_stadium_form_admin")
+        public String showNewStadiumForm(Model model) {
+            Stadium stadium = new Stadium();
+            model.addAttribute("stadium", stadium);
+
+            return "admin/new_stadium_form_admin";
         }
 
         @RequestMapping("/main")
