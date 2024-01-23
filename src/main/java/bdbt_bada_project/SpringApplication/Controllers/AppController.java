@@ -1,7 +1,10 @@
 package bdbt_bada_project.SpringApplication.Controllers;
+import bdbt_bada_project.SpringApplication.DAO.FansDAO;
+import bdbt_bada_project.SpringApplication.DTO.FanRegistrationDTO;
 import bdbt_bada_project.SpringApplication.Exceptions.UserAlreadyExistsException;
 import bdbt_bada_project.SpringApplication.Models.Contract;
 import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
+import bdbt_bada_project.SpringApplication.Models.Fan;
 import bdbt_bada_project.SpringApplication.Models.User;
 import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,8 @@ public class AppController implements WebMvcConfigurer {
 
         registry.addViewController("/main_without_contract_user").setViewName("user/main_without_contract_user");
         registry.addViewController("/main_with_contract_user").setViewName("user/main_with_contract_user");
+
+        registry.addViewController("/main_fan").setViewName("fan/main_fan");
     }
 
     public String getCurrentlyLoggedInUserUsername(){
@@ -110,7 +115,10 @@ public class AppController implements WebMvcConfigurer {
                      model.addAttribute("contract", contract);
                      return "user/main_with_contract_user";
                 }
-            } else {
+            } else if (request.isUserInRole("FAN")){
+                return "redirect:/main_fan";
+            }
+            else {
                 return "redirect:/index";
             }
         }
@@ -119,6 +127,8 @@ public class AppController implements WebMvcConfigurer {
     @Controller
     public class RegistrationController {
 
+        @Autowired
+        private FansDAO fansDAO;
         private final UserService userService;
         public RegistrationController(UserService userService){
             this.userService = userService;
@@ -127,7 +137,7 @@ public class AppController implements WebMvcConfigurer {
         @GetMapping("/register")
         public String showRegisterForm(Model model){
             model.addAttribute("user", new User());
-            return "register";
+            return "user/register_user";
         }
 
         @PostMapping("/register")
@@ -139,7 +149,35 @@ public class AppController implements WebMvcConfigurer {
 
             } catch (UserAlreadyExistsException e){
                 model.addAttribute("error", "User is already registered");
-                return "register";
+                return "user/register_user";
+            }
+        }
+
+        @GetMapping("/register_fan")
+        public String showRegisterFormFan(Model model) {
+            FanRegistrationDTO fanRegistrationDTO = new FanRegistrationDTO();
+            fanRegistrationDTO.setUser(new User());
+            fanRegistrationDTO.setFan(new Fan());
+            model.addAttribute("fanRegistrationDTO", fanRegistrationDTO);
+            return "fan/register_fan";
+        }
+
+        @PostMapping("/register_fan")
+        public String registerFan(@ModelAttribute("fanRegistrationDTO") FanRegistrationDTO fanRegistrationDTO, Model model) {
+            try {
+
+                User user = fanRegistrationDTO.getUser();
+                Fan fan = fanRegistrationDTO.getFan();
+
+                user.setRole("FAN");
+                userService.register(user);
+
+                fansDAO.save(fan);
+
+                return "redirect:/login";
+            } catch (UserAlreadyExistsException e){
+                model.addAttribute("error", "User is already registered");
+                return "fan/register_fan";
             }
         }
     }

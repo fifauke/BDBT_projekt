@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/index}">Home</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Login
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Fan registration form</h2>
+                </div>
+                <div class="card-body">
+                    <div th:if="${error}" class="alert alert-danger" role="alert">
+                        <p th:text="${error}">Error</p>
+                    </div>
+                    <form th:action="@{/register_fan}" method="post" th:object="${fanRegistrationDTO}">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" th:field="*{user.username}" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" th:field="*{user.password}" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">First name</label>
+                            <input type="text" id="first_name" name="first_name" th:field="*{fan.imie}" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Last name</label>
+                            <input type="text" id="last_name" name="last_name" th:field="*{fan.nazwisko}" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">E-mail</label>
+                            <input type="text" id="email" name="email" th:field="*{fan.email}" required class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Phone number</label>
+                            <input type="text" id="phone_number" name="phone_number" th:field="*{fan.nr_telefonu}" required class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

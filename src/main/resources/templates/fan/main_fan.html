@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Main User Page</title>
+    <title>Main Fan Page</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 
@@ -22,7 +22,7 @@
             <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Main
+                    <a class="nav-link" th:href="@{/main}">Main
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
@@ -34,11 +34,11 @@
 
                 <li class="nav-item">
                     <form method="post" th:action="@{/index}">
-                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
+                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+                            Logout
                         </button>
                     </form>
                 </li>
-
             </ul>
         </div>
     </div>
@@ -47,7 +47,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-20 mt-5">
+        <div class="col-md-10 mt-5">
 
             <div class="form-group">
                 <label style="font-size:30px" th:inline="text">Welcome <a
@@ -55,43 +55,13 @@
                     to the main page!
                 </label>
 
-                <div style="font-size:20px">You have signed a contract. It is shown below.</div>
-                <br/>
-                <table border = "1" cellpadding = "10">
-                    <!-- Table header -->
-                    <thead>
-                    <tr> <!-- Table row -->
-<!--                        <th style="text-align: center;">ID</th>-->
-                        <th style="text-align: center;">Sponsor Name</th>
-                        <th style="text-align: center;">Date of Expiry</th>
-                        <th style="text-align: center;">Monetary Value</th>
-                        <th style="text-align: center;">Industry</th>
-                        <th style="text-align: center;">Active Status</th>
-                        <th style="text-align: center;">Phone Number</th>
-                        <th style="text-align: center;">E-mail</th>
-                        <th style="text-align: center;">Action</th>
-                    </tr>
-                    </thead>
-                    <!-- Table body -->
-                    <tbody>
-                    <tr th:object = "${contract}">
-<!--                        <td th:text = "${contract.nr_sponsora}">ID</td>-->
-                        <td th:text = "${contract.nazwa_sponsora}">Sponsor Name</td>
-                        <td th:text = "${contract.data_zakonczenia_umowy}">Date of Expiry</td>
-                        <td th:text = "${contract.wartosc_finansowa}">Monetary Value</td>
-                        <td th:text = "${contract.branza}">Industry</td>
-                        <td th:text = "${contract.aktywna_umowa}">Active Status</td>
-                        <td th:text = "${contract.nr_telefonu}">Phone Number</td>
-                        <td th:text = "${contract.email}">E-mail</td>
-                        <td>
-                            <a th:href="@{'/edit_user/' + ${contract.nazwa_sponsora}}">Edit</a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a th:href="@{'/delete_user/' + ${contract.nazwa_sponsora}}">Delete</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div style="font-size:20px">If you want to see your tickets, press "My tickets".</div>
             </div>
+
+            <form method="post" th:action="@{/record_fan}">
+                <button class="btn btn-primary" type="submit" onclick="" value="">My tickets
+                </button>
+            </form>
             <br/>
             <div class="form-group">
                 <div style="font-size:20px">If you want to log out, press "Logout".</div>
