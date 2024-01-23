@@ -52,41 +52,55 @@
 
 <div align = "center">
   <br/>
-  <h1>Edit Contract</h1>
+  <h1>Edit Stadium</h1>
   <br/>
-  <form action="#" th:action="@{/update}" th:object="${stadium}" method="post">
+  <form action="#" th:action="@{/update_stadium}" th:object="${stadium}" method="post">
     <table border = "1" cellpadding = "10">
       <!-- Table row-->
       <tr>
-        <td>Nr sponsora:</td>
+        <td>Stadium number:</td>
         <td><input type="text" th:field="*{nr_stadionu}"></td>
       </tr>
       <tr>
-        <td>Nazwa sponsora:</td>
+        <td>Number of seats:</td>
         <td><input type="text" th:field="*{ilosc_miejsc}"></td>
       </tr>
       <tr>
-        <td>Data zakonczenia umowy:</td>
+        <td>Name:</td>
         <td><input type="text" th:field="*{nazwa}"></td>
       </tr>
       <tr>
-        <td>Wartosc finansowa:</td>
+        <td>Date of opening:</td>
         <td><input type="text" th:field="*{data_otwarcia}"></td>
       </tr>
       <tr>
-        <td>Branza:</td>
-        <td><input type="text" th:field="*{czy_parking}"></td>
+        <td>Has parking?:</td>
+        <td>
+          <select th:field="*{czy_parking}">
+            <option value="true" th:text="Yes"></option>
+            <option value="false" th:text="No"></option>
+        </select>
+        </td>
       </tr>
       <tr>
-        <td>Nr telefonu:</td>
-        <td><input type="text" th:field="*{rodzaj_murawy}"></td>
+        <td>
+          <select th:field="*{rodzaj_murawy}">
+            <option value="N" th:text="Natural"></option>
+            <option value="S" th:text="Artificial"></option>
+          </select>
+        </td>
       </tr>
       <tr>
-        <td>email:</td>
-        <td><input type="text" th:field="*{czy_zamykany_dach}"></td>
+        <td>Has closeable roof?:</td>
+        <td>
+          <select th:field="*{czy_zamykany_dach}">
+            <option value="true" th:text="Yes"></option>
+            <option value="false" th:text="No"></option>
+          </select>
+        </td>
       </tr>
       <tr>
-        <td>email:</td>
+        <td>Address:</td>
         <td><input type="text" th:field="*{adres}"></td>
       </tr>
       <tr>
