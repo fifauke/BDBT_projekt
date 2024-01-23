@@ -41,7 +41,7 @@ public class StadiumsDAO {
     }
 
     public Stadium get(int Nr_stadionu) {
-        String sql = "SELECT * FROM Stadiony WHERE Nr_sponsora = ?";
+        String sql = "SELECT * FROM Stadiony WHERE Nr_stadionu = ?";
         Object[] args = {Nr_stadionu};
         Stadium stadium = jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Stadium.class));
         return stadium;

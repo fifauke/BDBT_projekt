@@ -60,11 +60,6 @@
   <form action="#" th:action="@{/save_stadium}" th:object="${stadium}" method="post">
     <!-- Table -->
     <table border = "1" cellpadding = "10">
-      <!-- Table row-->
-      <!--            <tr>-->
-      <!--                <td>ID:</td>-->
-      <!--                <td><input type="text" th:field="*{nr_sponsora}"></td>-->
-      <!--            </tr>-->
       <tr>
         <td>Number of seats:</td>
         <td><input type="text" th:field="*{ilosc_miejsc}"></td>
@@ -78,16 +73,31 @@
         <td><input type="text" th:field="*{data_otwarcia}"></td>
       </tr>
       <tr>
-        <td>Has parking?:</td>
-        <td><input type="text" th:field="*{czy_parking}"></td>
+        <td>Has parking?</td>
+        <td>
+          <select th:field="*{czy_parking}">
+            <option value="true" th:text="Yes"></option>
+            <option value="false" th:text="No"></option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td>Type of grass:</td>
-        <td><input type="text" th:field="*{rodzaj_murawy}"></td>
+        <td>
+          <select th:field="*{rodzaj_murawy}">
+            <option value="N" th:text="Natural"></option>
+            <option value="S" th:text="Artificial"></option>
+          </select>
+        </td>
       </tr>
       <tr>
-        <td>Has closeable roof?:</td>
-        <td><input type="text" th:field="*{czy_zamykany_dach}"></td>
+        <td>Has closeable roof?</td>
+        <td>
+          <select th:field="*{czy_zamykany_dach}">
+            <option value="true" th:text="Yes"></option>
+            <option value="false" th:text="No"></option>
+        </select>
+        </td>
       </tr>
       <tr>
         <td>Address:</td>

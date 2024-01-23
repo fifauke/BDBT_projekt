@@ -54,36 +54,40 @@
   <br/>
   <h1>Edit Contract</h1>
   <br/>
-  <form action="#" th:action="@{/update}" th:object="${contract}" method="post">
+  <form action="#" th:action="@{/update}" th:object="${stadium}" method="post">
     <table border = "1" cellpadding = "10">
       <!-- Table row-->
       <tr>
         <td>Nr sponsora:</td>
-        <td><input type="text" th:field="*{nr_sponsora}"></td>
+        <td><input type="text" th:field="*{nr_stadionu}"></td>
       </tr>
       <tr>
         <td>Nazwa sponsora:</td>
-        <td><input type="text" th:field="*{nazwa_sponsora}"></td>
+        <td><input type="text" th:field="*{ilosc_miejsc}"></td>
       </tr>
       <tr>
         <td>Data zakonczenia umowy:</td>
-        <td><input type="text" th:field="*{data_zakonczenia_umowy}"></td>
+        <td><input type="text" th:field="*{nazwa}"></td>
       </tr>
       <tr>
         <td>Wartosc finansowa:</td>
-        <td><input type="text" th:field="*{wartosc_finansowa}"></td>
+        <td><input type="text" th:field="*{data_otwarcia}"></td>
       </tr>
       <tr>
         <td>Branza:</td>
-        <td><input type="text" th:field="*{branza}"></td>
+        <td><input type="text" th:field="*{czy_parking}"></td>
       </tr>
       <tr>
         <td>Nr telefonu:</td>
-        <td><input type="text" th:field="*{nr_telefonu}"></td>
+        <td><input type="text" th:field="*{rodzaj_murawy}"></td>
       </tr>
       <tr>
         <td>email:</td>
-        <td><input type="text" th:field="*{email}"></td>
+        <td><input type="text" th:field="*{czy_zamykany_dach}"></td>
+      </tr>
+      <tr>
+        <td>email:</td>
+        <td><input type="text" th:field="*{adres}"></td>
       </tr>
       <tr>
         <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>

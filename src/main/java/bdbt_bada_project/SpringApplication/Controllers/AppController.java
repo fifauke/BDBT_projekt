@@ -125,6 +125,22 @@ public class AppController implements WebMvcConfigurer {
             return "admin/new_stadium_form_admin";
         }
 
+        @RequestMapping("/save_stadium")
+        public String saveStadium(@ModelAttribute("stadium") Stadium stadium) {
+            stadiumsDAO.save(stadium);
+
+            return "redirect:/record_stadium_admin";
+        }
+
+        @RequestMapping(value="/edit_stadium_admin/{Nr_stadionu}")
+        public ModelAndView showStadiumEditForm(@PathVariable(name = "Nr_stadionu") int Nr_stadionu) {
+            ModelAndView mav = new ModelAndView("admin/edit_stadium_form_admin");
+            Stadium stadium = stadiumsDAO.get(Nr_stadionu);
+            mav.addObject("stadium", stadium);
+
+            return mav;
+        }
+
         @RequestMapping("/main")
         public String defaultAfterLogin(HttpServletRequest request, Model model) {
 
