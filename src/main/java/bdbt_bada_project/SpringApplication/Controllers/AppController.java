@@ -141,6 +141,24 @@ public class AppController implements WebMvcConfigurer {
             return mav;
         }
 
+        @RequestMapping(value="/update_stadium", method = RequestMethod.POST)
+        public String update(@ModelAttribute("stadium") Stadium stadium) {
+            stadiumsDAO.update(stadium);
+
+            return "redirect:/record_stadium_admin";
+        }
+
+        @RequestMapping(value="/delete_stadium_admin/{Nr_stadionu}")
+        public String deleteStadium(@PathVariable(name = "Nr_stadionu") int Nr_stadionu) {
+            stadiumsDAO.delete(Nr_stadionu);
+
+            return "redirect:/record_stadium_admin";
+        }
+
+
+
+
+
         @RequestMapping("/main")
         public String defaultAfterLogin(HttpServletRequest request, Model model) {
 

@@ -56,7 +56,7 @@ public class StadiumsDAO {
     }
 
     public void delete(int Nr_stadionu) {
-        String sql = "DELETE FROM Stadiony WHERE Nr_stadiona = ?";
+        String sql = "DELETE FROM Stadiony WHERE Nr_stadionu = ?";
         jdbcTemplate.update(sql, Nr_stadionu);
     }
 }
