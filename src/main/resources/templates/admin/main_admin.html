@@ -73,12 +73,22 @@
                 </button>
             </form>
             <br/>
+            <br/>
+            <div style="font-size:20px">If you want to manage matches, press "Manage Matches".</div>
+            <br/>
+            <form method="post" th:action="@{/record_matches_admin}">
+                <button class="btn btn-primary" type="submit" onclick="" value="">Manage Matches
+                </button>
+            </form>
+            <br/>
+            <br/>
             <div style="font-size:20px">If you want to manage stadiums, press "Manage Stadiums".</div>
             <br/>
             <form method="post" th:action="@{/record_stadium_admin}">
                 <button class="btn btn-primary" type="submit" onclick="" value="">Manage Stadiums
                 </button>
             </form>
+            <br/>
             <br/>
             <div class="form-group">
                 <div style="font-size:20px">If you want to log out, press "Logout".</div>

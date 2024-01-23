@@ -1,13 +1,11 @@
 package bdbt_bada_project.SpringApplication.Controllers;
 import bdbt_bada_project.SpringApplication.DAO.FansDAO;
+import bdbt_bada_project.SpringApplication.DAO.MatchesDAO;
 import bdbt_bada_project.SpringApplication.DAO.StadiumsDAO;
 import bdbt_bada_project.SpringApplication.DTO.FanRegistrationDTO;
 import bdbt_bada_project.SpringApplication.Exceptions.UserAlreadyExistsException;
-import bdbt_bada_project.SpringApplication.Models.Contract;
+import bdbt_bada_project.SpringApplication.Models.*;
 import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
-import bdbt_bada_project.SpringApplication.Models.Fan;
-import bdbt_bada_project.SpringApplication.Models.Stadium;
-import bdbt_bada_project.SpringApplication.Models.User;
 import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -55,6 +53,8 @@ public class AppController implements WebMvcConfigurer {
         private ContractsDAO dao;
         @Autowired
         private StadiumsDAO stadiumsDAO;
+        @Autowired
+        private MatchesDAO matchesDAO;
 
         @RequestMapping("/record_admin")
         public String viewHomePage(Model model){
@@ -155,7 +155,12 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/record_stadium_admin";
         }
 
-
+        @RequestMapping("/record_matches_admin")
+        public String viewMatchesRecord(Model model){
+            List<Match> listMatch = matchesDAO.list();
+            model.addAttribute("listContract", listMatch);
+            return "admin/record_matches_admin";
+        }
 
 
 

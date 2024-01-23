@@ -1,9 +1,7 @@
 package bdbt_bada_project.SpringApplication;
 
-import bdbt_bada_project.SpringApplication.DAO.FansDAO;
-import bdbt_bada_project.SpringApplication.DAO.StadiumsDAO;
-import bdbt_bada_project.SpringApplication.Models.Fan;
-import bdbt_bada_project.SpringApplication.Models.Stadium;
+import bdbt_bada_project.SpringApplication.DAO.MatchesDAO;
+import bdbt_bada_project.SpringApplication.Models.Match;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,9 +12,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StadiumsDAOTest {
-    private StadiumsDAO dao;
+public class MatchesDAOTest {
 
+    private MatchesDAO dao;
     @BeforeEach
     void setUp() throws Exception{
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -26,19 +24,19 @@ public class StadiumsDAOTest {
         dataSource.setPassword("mininet");
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 
-        dao = new StadiumsDAO(new JdbcTemplate(dataSource));
+        dao = new MatchesDAO(new JdbcTemplate(dataSource));
     }
 
     @Test
     void list() {
-        List<Stadium> listStadium = dao.list();
-        System.out.println(listStadium);
-        assertTrue(listStadium.isEmpty());
+        List<Match> listMatch = dao.list();
+        System.out.println(listMatch);
+        assertTrue(listMatch.isEmpty());
     }
 
     @Test
     void testSave() {
-        Stadium stadium = new Stadium(1, 10000, "Test Stadion", LocalDate.of(2000,12,20), true, "N", true, "Warszawa Radarowa 1");
-        dao.save(stadium);
+        Match match = new Match(1, 1, LocalDate.of(2000,12,20), 0, "Gospod", "Scie", true, 5, 4);
+        dao.save(match);
     }
 }
