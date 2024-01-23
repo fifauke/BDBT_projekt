@@ -162,6 +162,14 @@ public class AppController implements WebMvcConfigurer {
             return "admin/record_matches_admin";
         }
 
+        @RequestMapping("/new_match_form_admin")
+        public String showNewMatchForm(Model model){
+            Match match = new Match();
+            model.addAttribute("match", match);
+
+            return "admin/new_match_form_admin";
+        }
+
 
 
         @RequestMapping("/main")

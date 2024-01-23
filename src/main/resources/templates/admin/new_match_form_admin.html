@@ -1,10 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>New Match</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">BDBT Spring Boot Project - Part II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
 
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/main}">Main
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/record_admin}">Contracts
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/record_stadium_admin}">Stadiums
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
+                  style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+        </li>
+
+        <li class="nav-item">
+          <form method="post" th:action="@{/index}">
+            <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+              Logout
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div align="center">
+  <br/>
+  <!-- Page header -->
+  <h1>Enter new match</h1>
+
+  <!-- End line/ new line -->
+  <br/>
+
+  <form action="#" th:action="@{/save_match}" th:object="${match}" method="post">
+    <!-- Table -->
+    <table border = "1" cellpadding = "10">
+      <tr>
+        <td>Number of seats:</td>
+        <td><input type="text" th:field="*{nr_meczu}"></td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" th:field="*{nr_stadionu}"></td>
+      </tr>
+      <tr>
+        <td>Date of opening:</td>
+        <td><input type="text" th:field="*{data}"></td>
+      </tr>
+      <tr>
+        <td>Has parking?</td>
+        <td><input type="text" th:field="*{doliczony_czas}"></td>
+      </tr>
+      <tr>
+        <td>Type of grass:</td>
+        <td><input type="text" th:field="*{gospodarze}"></td>
+      </tr>
+      <tr>
+        <td>Has closeable roof?</td>
+        <td><input type="text" th:field="*{goscie}"></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" th:field="*{czy_sie_odbyl}"></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" th:field="*{bramki_gospodarzy}"></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><input type="text" th:field="*{bramki_gosci}"></td>
+      </tr>
+      <tr>
+        <td style="text-align: center;" colspan="2"><button class="btn btn-primary" type="submit">Add</button></td>
+      </tr>
+
+    </table>
+  </form>
+</div>
 </body>
 </html>
