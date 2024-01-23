@@ -66,7 +66,11 @@
       </tr>
       <tr>
         <td>Stadium Number:</td>
-        <td><input type="text" th:field="*{nr_stadionu}"></td>
+        <td>
+          <select th:field="*{nr_stadionu}">
+            <option th:each="stadium: ${stadiums}" th:value="${stadium.nr_stadionu}" th:text="${stadium.nazwa}"></option>
+          </select>
+        </td>
       </tr>
       <tr>
         <td>Date of Match:</td>

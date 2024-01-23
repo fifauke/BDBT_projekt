@@ -166,6 +166,7 @@ public class AppController implements WebMvcConfigurer {
         public String showNewMatchForm(Model model){
             Match match = new Match();
             model.addAttribute("match", match);
+            model.addAttribute("stadiums", stadiumsDAO.list());
 
             return "admin/new_match_form_admin";
         }
