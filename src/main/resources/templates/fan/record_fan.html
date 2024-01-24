@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Tickets Record</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/main}">BDBT Spring Boot Project - Part II</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/main}">Main
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:inline="text" style="color:lightskyblue;">Logged in as <b
+                            style="text-transform:capitalize">[[${#httpServletRequest.remoteUser}]]</b></a>
+                </li>
+
+                <li class="nav-item">
+                    <form method="post" th:action="@{/index}">
+                        <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div align="center">
+    <br/>
+    <h1>Your tickets</h1>
+    <br/>
+    <!-- Entry to new page-->
+
+    <form method="post" th:action="@{/new_form_fan}">
+        <button class="btn btn-primary" type="submit" onclick="" value="">Buy tickets
+        </button>
+    </form>
+    <br/>
+
+    <!-- Table -->
+    <table border = "1" cellpadding = "10">
+        <!-- Table header -->
+        <thead>
+        <tr> <!-- Table row -->
+            <th style="text-align: center;">ID Kibica</th> <!–- Table column -->
+            <th style="text-align: center;">Nr meczu</th>
+            <th style="text-align: center;">Nr stadionu</th>
+            <th style="text-align: center;">Action</th>
+        </tr>
+        </thead>
+        <!-- Table body -->
+        <tbody>
+        <tr th:each = "ticket : ${listTicketsDTO}">
+            <td th:text = "${ticket.fan.imie}">ID</td>
+            <td th:text = "${ticket.fan.nazwisko}">Sponsor Name</td>
+            <td th:text = "${ticket.match.data}">Sponsor Name</td>
+            <td th:text = "${ticket.stadium.nazwa}">Date of Expiry</td>
+            <td th:text = "${ticket.stadium.adres}">Date of Expiry</td>
+            <td th:text = "${ticket.match.goscie}">Date of Expiry</td>
+            <td th:text = "${ticket.match.gospodarze}">Date of Expiry</td>
+            <td>
+                <a th:href="@{'/edit_admin/' + ${ticket.tickets.nr_kibica}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete_admin/' + ${ticket.tickets.nr_kibica}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+</html>

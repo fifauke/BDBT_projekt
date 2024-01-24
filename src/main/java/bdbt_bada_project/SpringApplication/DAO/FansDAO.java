@@ -30,9 +30,15 @@ public class FansDAO {
 
     public void save(Fan fan) {
         SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-        insertActor.withTableName("Kibice").usingColumns("Nr_kibica", "Nr_telefonu", "email", "Liczba_meczy", "Imie", "Nazwisko");
+        insertActor.withTableName("Kibice").usingColumns("Nr_kibica", "Nr_telefonu", "email", "Liczba_meczy", "Imie", "Nazwisko", "Username");
 
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(fan);
         insertActor.execute(param);
+    }
+
+    public Fan getByUsername(String username) {
+        String sql = "SELECT * FROM Kibice WHERE Username = ?";
+
+        return jdbcTemplate.queryForObject(sql, new Object[]{username}, BeanPropertyRowMapper.newInstance(Fan.class));
     }
 }

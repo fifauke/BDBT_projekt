@@ -1,11 +1,9 @@
 package bdbt_bada_project.SpringApplication.Controllers;
-import bdbt_bada_project.SpringApplication.DAO.FansDAO;
-import bdbt_bada_project.SpringApplication.DAO.MatchesDAO;
-import bdbt_bada_project.SpringApplication.DAO.StadiumsDAO;
+import bdbt_bada_project.SpringApplication.DAO.*;
 import bdbt_bada_project.SpringApplication.DTO.FanRegistrationDTO;
+import bdbt_bada_project.SpringApplication.DTO.TicketDTO;
 import bdbt_bada_project.SpringApplication.Exceptions.UserAlreadyExistsException;
 import bdbt_bada_project.SpringApplication.Models.*;
-import bdbt_bada_project.SpringApplication.DAO.ContractsDAO;
 import bdbt_bada_project.SpringApplication.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -263,6 +262,8 @@ public class AppController implements WebMvcConfigurer {
                 user.setRole("FAN");
                 userService.register(user);
 
+                fan.setUsername(user.getUsername());
+                System.out.println(fan.getUsername());
                 fansDAO.save(fan);
 
                 return "redirect:/login";
@@ -316,5 +317,38 @@ public class AppController implements WebMvcConfigurer {
             return "redirect:/main";
         }
 
+    }
+
+    @Controller
+    public class FanDashboardController {
+        @Autowired
+        private TicketsDAO ticketsDAO;
+        @Autowired
+        private FansDAO fansDAO;
+        @Autowired
+        private StadiumsDAO stadiumsDAO;
+        @Autowired
+        private MatchesDAO matchesDAO;
+        @RequestMapping("/record_fan")
+        public String showNewForm(Model model) {
+
+
+            String username = getCurrentlyLoggedInUserUsername();
+
+            List<Ticket> listTickets = ticketsDAO.getTicketsByUsername(username);
+
+            List<TicketDTO> listTicketsDTO = new ArrayList<>();
+
+            for(Ticket ticket: listTickets){
+                listTicketsDTO.add( new TicketDTO(ticket, stadiumsDAO.get(ticket.getNr_stadionu()), fansDAO.getByUsername(username), matchesDAO.get(ticket.getNr_meczu())));
+            }
+
+            model.addAttribute("listTicketsDTO", listTicketsDTO);
+
+            return "fan/record_fan";
+        }
+
+        @RequestMapping("/new_form_fan")
+        public String show
     }
 }

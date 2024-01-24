@@ -7,6 +7,7 @@ public class Fan {
     private int Liczba_meczy;
     private String Imie;
     private String Nazwisko;
+    private String Username;
 
     public Fan(int nr_kibica, String nr_telefonu, String email, int liczba_meczy, String imie, String nazwisko) {
         Nr_kibica = nr_kibica;
@@ -46,6 +47,14 @@ public class Fan {
 
     public int getLiczba_meczy() {
         return Liczba_meczy;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
     }
 
     public void setLiczba_meczy(int liczba_meczy) {
