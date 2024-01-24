@@ -70,13 +70,13 @@
         <!-- Table body -->
         <tbody>
         <tr th:each = "ticket : ${listTicketsDTO}">
-            <td th:text = "${ticket.fan.imie}">ID</td>
-            <td th:text = "${ticket.fan.nazwisko}">Sponsor Name</td>
-            <td th:text = "${ticket.match.data}">Sponsor Name</td>
-            <td th:text = "${ticket.stadium.nazwa}">Date of Expiry</td>
-            <td th:text = "${ticket.stadium.adres}">Date of Expiry</td>
-            <td th:text = "${ticket.match.goscie}">Date of Expiry</td>
-            <td th:text = "${ticket.match.gospodarze}">Date of Expiry</td>
+            <td th:text = "${ticket.fan.imie}">Name</td>
+            <td th:text = "${ticket.fan.nazwisko}">Surname</td>
+            <td th:text = "${ticket.match.data}">Date</td>
+            <td th:text = "${ticket.stadium.nazwa}">Stadium</td>
+            <td th:text = "${ticket.stadium.adres}">Address</td>
+            <td th:text = "${ticket.match.goscie}">Hosts</td>
+            <td th:text = "${ticket.match.gospodarze}">Guests</td>
             <td>
                 <a th:href="@{'/edit_admin/' + ${ticket.tickets.nr_kibica}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -91,5 +91,5 @@
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/script.js}"></script>
 
-</body>
+    </body>
 </html>
