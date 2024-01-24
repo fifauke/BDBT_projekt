@@ -30,8 +30,13 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/record_stadium_admin}">Stadiums
+                    <a class="nav-link active" th:href="@{/record_matches_admin}">Matches
                         <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/record_stadium_admin}">Stadiums
                     </a>
                 </li>
 
@@ -77,13 +82,14 @@
             <th style="text-align: center;">Took Place?</th>
             <th style="text-align: center;">Hosts' goals</th>
             <th style="text-align: center;">Guests' goals</th>
+            <th style="text-align: center;">Action</th>
         </tr>
         </thead>
         <!-- Table body -->
         <tbody>
         <tr th:each = "match : ${listMatch}">
             <td th:text = "${match.nr_meczu}">ID</td>
-            <td th:text = "${match.nr_stadionu}">Match Number</td>
+            <td th:text = "${match.nr_stadionu}">Stadium ID Number</td>
             <td th:text = "${match.data}">Date of Match</td>
             <td th:text = "${match.doliczony_czas}">Added Time</td>
             <td th:text = "${match.gospodarze}">Hosts</td>
@@ -92,9 +98,9 @@
             <td th:text = "${match.bramki_gospodarzy}">Hosts' goals</td>
             <td th:text = "${match.bramki_gosci}">Guests' goals</td>
             <td>
-                <a th:href="@{'/edit_stadium_admin/' + ${match.nr_meczu}}">Edit</a>
+                <a th:href="@{'/edit_match_admin/' + ${match.nr_meczu}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/delete_stadium_admin/' + ${match.nr_meczu}}">Delete</a>
+                <a th:href="@{'/delete_match_admin/' + ${match.nr_meczu}}">Delete</a>
             </td>
         </tr>
         </tbody>

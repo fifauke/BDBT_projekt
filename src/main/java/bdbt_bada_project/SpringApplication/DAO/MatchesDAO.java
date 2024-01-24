@@ -40,7 +40,7 @@ public class MatchesDAO {
     }
 
     public Match get(int Nr_meczu) {
-        String sql = "SELECT * FROM Stadiony WHERE Nr_meczu = ?";
+        String sql = "SELECT * FROM Mecze WHERE Nr_meczu = ?";
         Object[] args = {Nr_meczu};
         Match match = jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Match.class));
         return match;

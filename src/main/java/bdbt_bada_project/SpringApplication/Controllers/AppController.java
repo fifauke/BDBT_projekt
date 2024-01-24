@@ -113,6 +113,7 @@ public class AppController implements WebMvcConfigurer {
                     stadium.setRodzaj_murawy("Artificial");
                 }
             }
+
             model.addAttribute("listStadium", listStadium);
             return "admin/record_stadium_admin";
         }
@@ -158,7 +159,7 @@ public class AppController implements WebMvcConfigurer {
         @RequestMapping("/record_matches_admin")
         public String viewMatchesRecord(Model model){
             List<Match> listMatch = matchesDAO.list();
-            model.addAttribute("listContract", listMatch);
+            model.addAttribute("listMatch", listMatch);
             return "admin/record_matches_admin";
         }
 
@@ -171,7 +172,21 @@ public class AppController implements WebMvcConfigurer {
             return "admin/new_match_form_admin";
         }
 
+        @RequestMapping("/save_match")
+        public String saveMatch(@ModelAttribute("match") Match match) {
+            matchesDAO.save(match);
 
+            return "redirect:/record_matches_admin";
+        }
+
+        @RequestMapping(value="/edit_match_admin/{Nr_meczu}")
+        public ModelAndView showMatchEditForm(@PathVariable(name = "Nr_meczu") int Nr_meczu) {
+            ModelAndView mav = new ModelAndView("admin/edit_match_form_admin");
+            Match match = matchesDAO.get(Nr_meczu);
+            mav.addObject("match", match);
+
+            return mav;
+        }
 
         @RequestMapping("/main")
         public String defaultAfterLogin(HttpServletRequest request, Model model) {

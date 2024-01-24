@@ -28,6 +28,11 @@
           </a>
         </li>
 
+          <li class="nav-item">
+              <a class="nav-link" th:href="@{/record_matches_admin}">Matches
+              </a>
+          </li>
+
         <li class="nav-item">
           <a class="nav-link" th:href="@{/record_stadium_admin}">Stadiums
           </a>
@@ -60,10 +65,10 @@
   <form action="#" th:action="@{/save_match}" th:object="${match}" method="post">
     <!-- Table -->
     <table border = "1" cellpadding = "10">
-      <tr>
-        <td>Match Number:</td>
-        <td><input type="text" th:field="*{nr_meczu}"></td>
-      </tr>
+<!--      <tr>-->
+<!--        <td>Match Number:</td>-->
+<!--        <td><input type="text" th:field="*{nr_meczu}"></td>-->
+<!--      </tr>-->
       <tr>
         <td>Stadium Name:</td>
         <td>
